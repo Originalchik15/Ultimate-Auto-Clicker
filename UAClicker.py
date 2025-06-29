@@ -4,6 +4,7 @@ import pyautogui as pg
 import keyboard as kb
 import time
 import mouse 
+import csv
 
 def autoclick_mouse(e): # mouse autoclicking
     while True:
@@ -20,17 +21,23 @@ def autoclick_key(e): # key autoclicking
         time.sleep(speed_click)
         
 
-
+k = []
+with open("settings.csv", newline='') as csvfile:
+    saved = csv.reader(csvfile,delimiter=',')
+    for row in saved:
+        for key in row:
+            k.append(key)
 
 #----------DEFAULT_SETTINGS----------
-start_button_mouse = 'f8'
-stop_button_mouse = 'f7'
-start_button_key = 'f6'
-stop_button_key = 'f5'
-key_click = 'e'
-speed_click = 10
-mouse_type = 'left'
+start_button_mouse = k[0]
+stop_button_mouse = k[1]
+start_button_key = k[2]
+stop_button_key = k[3]
+key_click = k[4]
+speed_click = k[5]
+mouse_type = k[6]
 
+print(start_button_mouse)
 def main_menu():
     #----------AUTOCLICKER----------
     def autoclicker_key_mouse():
